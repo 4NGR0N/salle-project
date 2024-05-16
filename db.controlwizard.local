@@ -20,8 +20,8 @@ dns-node	IN	A	192.168.2.66
 nagios-node	IN	A	192.168.2.65
 dhcp-node	IN	A	192.168.2.67
 web-node 	IN	A	192.168.2.194
-tower-node	IN	A	192.168.2.68
-bbdd-node	IN  A	192.168.2.129
+tower-node	IN	A	192.168.2.130
+bbdd-node	IN  A	192.168.2.131
 ftp-node 	IN	A	192.168.2.69
 
 ; Registros de las maquinas del dominio segun su servicio
