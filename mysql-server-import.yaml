@@ -1,0 +1,31 @@
+---
+- name: Install MySQL and import database
+  hosts: ubuntu
+  become: yes
+
+  tasks:
+
+      - name: Install MySQL
+        apt:
+          name: mysql-server
+          state: present
+
+      - name: Start MySQL service
+        service:
+          name: mysql
+          state: started
+          enabled: yes
+
+      - name: Copy database dump file
+        copy:
+          content: "{{ lookup('file', 'path/to/your/database_dump.sql') | uncomment }}"
+          dest: /tmp/database_dump.sql
+          mode: '0644'
+
+      - name: Import database
+        mysql_db:
+          name: your_database_name
+          state: import
+          target: /tmp/database_dump.sql
+
+---
