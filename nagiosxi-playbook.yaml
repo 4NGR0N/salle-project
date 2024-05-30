@@ -1,26 +1,22 @@
 ---
-- name: Install Nagios XI on Ubuntu
-  hosts: your_nagios_servers
-  become: true
-  vars:
-    nagios_xi_installer_path: "/path/to/nagiosxi_installer.sh"
-
+- hosts: centos
+  remote_user: root
   tasks:
-    - name: Copy Nagios XI installer
-      copy:
-        src: "{{ nagios_xi_installer_path }}"
-        dest: "/tmp/nagiosxi_installer.sh"
-        mode: 0755
 
-    - name: Run Nagios XI installer
-      shell: "/tmp/nagiosxi_installer.sh -n"
+  - name: Download latest XI source
+    get_url:
+      url: http://assets.nagios.com/downloads/nagiosxi/xi-latest.tar.gz
+      dest: "/tmp/xi-latest.tar.gz"
+      force: yes
+      validate_certs: no
 
-    - name: Start Nagios XI services
-      service:
-        name: "{{ item }}"
-        state: started
-      loop:
-        - nagios
-        - ndo2db
-        - npcd
-        - nagiosxi
+  - name: Untar source tarball
+    unarchive:
+      src: "/tmp/xi-latest.tar.gz"
+      dest: "/tmp/"
+      copy: no
+
+  - name: Run install
+    shell: "./fullinstall -n"
+    args:
+      chdir: "/tmp/nagiosxi"
