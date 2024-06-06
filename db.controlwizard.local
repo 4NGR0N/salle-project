@@ -19,10 +19,11 @@ dns-node	IN	A	192.168.2.66
 ; Registros de las maquinas del dominio
 nagios-node	IN	A	192.168.2.65
 dhcp-node	IN	A	192.168.2.67
-web-node 	IN	A	192.168.2.194
+ftp-node 	IN	A	192.168.2.69
 tower-node	IN	A	192.168.2.130
 bbdd-node	IN  A	192.168.2.131
-ftp-node 	IN	A	192.168.2.69
+web-node 	IN	A	192.168.2.194
+
 
 ; Registros de las maquinas del dominio segun su servicio
 ftp		IN	CNAME	ftp-node
