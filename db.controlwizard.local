@@ -21,7 +21,7 @@ nagios-node	IN	A	192.168.2.65
 dhcp-node	IN	A	192.168.2.67
 ftp-node 	IN	A	192.168.2.69
 tower-node	IN	A	192.168.2.130
-bbdd-node	IN  A	192.168.2.131
+bbdd-node	IN	A	192.168.2.131
 web-node 	IN	A	192.168.2.194
 
 
