@@ -1,21 +1,21 @@
 ---
-- name: Install and configure MySQL
+- name: Instal·lació de MySQL server
   hosts: mysql-node
   become: true
   vars:
     mysql_root_password: "risso"
 
   tasks:
-    - name: Update apt cache
+    - name: Actualitzem sistema
       apt:
         update_cache: yes
 
-    - name: Install MySQL server
+    - name: Instal·lació de MySQL server
       apt:
         name: mysql-server
         state: present
 
-    - name: Secure MySQL installation
+    - name: Procés de Secure Installation
       expect:
         command: mysql_secure_installation
         responses:
@@ -29,7 +29,7 @@
           'Remove test database and access to it? (Press y|Y for Yes, any other key for No) :': "y"
           'Reload privilege tables now? (Press y|Y for Yes, any other key for No) :': "y"
 
-    - name: Restart MySQL service
+    - name: Restart del servei MySQL
       service:
         name: mysql
         state: restarted

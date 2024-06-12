@@ -1,22 +1,22 @@
----
-- hosts: centos
-  remote_user: risso
-  tasks:
+--- 
+- hosts: centos 
+  remote_user: risso 
+  tasks: 
 
-  - name: Download latest XI source
-    get_url:
-      url: http://assets.nagios.com/downloads/nagiosxi/xi-latest.tar.gz
-      dest: "/tmp/xi-latest.tar.gz"
-      force: yes
-      validate_certs: no
+  - name: Decarreguem la imatge de Nagios 
+    get_url: 
+      url: http://assets.nagios.com/downloads/nagiosxi/xi-latest.tar.gz 
+      dest: "/tmp/xi-latest.tar.gz" 
+      force: yes 
+      validate_certs: no 
 
-  - name: Untar source tarball
-    unarchive:
-      src: "/tmp/xi-latest.tar.gz"
-      dest: "/tmp/"
+  - name: Descomprimim paquet nagios 
+    unarchive: 
+      src: "/tmp/xi-latest.tar.gz" 
+      dest: "/tmp/" 
       copy: no
 
-  - name: Run install
-    shell: "./fullinstall -n"
-    args:
-      chdir: "/tmp/nagiosxi"
+  - name: Executem l’script d’instal·lació (-n tracta de fer la instal·lació unnattended)
+    shell: "./fullinstall -n" 
+    args: 
+      chdir: "/tmp/nagiosxi" 

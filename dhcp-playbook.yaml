@@ -1,12 +1,12 @@
 ---
-- name: Install and configure DHCP service on Ubuntu
+- name: Instal·lació de servei DHCP
   hosts: your_dhcp_servers
   become: true
   vars:
-    dhcp_config_files_path: "/path/to/dhcp_config_files"
+    dhcp_config_files_path: "/home/risso/"
 
   tasks:
-    - name: Copy DHCP configuration files
+    - name: Copiem els arxius de configuració de DHCP
       copy:
         src: "{{ dhcp_config_files_path }}"
         dest: "/etc/dhcp/"
@@ -14,12 +14,12 @@
         group: root
         mode: '0644'
 
-    - name: Install DHCP server package
+    - name: Instal·lació de isc-dhcp-server
       apt:
         name: isc-dhcp-server
         state: present
 
-    - name: Start DHCP service
+    - name: Fer start al servei
       service:
         name: isc-dhcp-server
         state: started
